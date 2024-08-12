@@ -86,7 +86,9 @@ def createRoom(request):
     if request.method == 'POST':
         form = RoomForm(request.POST)
         if form.is_valid():
-            form.save()
+            room = form.save(commit=False)
+            room.host = request.user
+            room.save()
             return redirect('home')
     context = {'form':form}
     return render(request, 'base/room_form.html',context)
@@ -114,9 +116,9 @@ def deleteRoom(request, pk):
     if request.method == 'POST':
         room.delete()
         return redirect('home')
-    return render(request, 'base/delete.html',{'obj':room})@login_required(login_url='/login')
+    return render(request, 'base/delete.html',{'obj':room})
 
-
+@login_required(login_url='/login')
 def delete_message(request, pk):
     message = Message.objects.get(id=pk)
     if request.user != message.user:
