@@ -101,6 +101,7 @@ a {
 
 .btn:hover {
   opacity: 0.9;
+  background: #4ac1f7;
 }
 
 .btn--dark {
@@ -233,7 +234,7 @@ a {
 }
 
 .dropdown-menu a:hover {
-  background-color: var(--color-dark-medium);
+  background-color: deepskyblue;
 }
 
 .dropdown-menu > a:not(:last-child) {
